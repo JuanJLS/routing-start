@@ -7,6 +7,7 @@ import { ServersComponent } from "./servers/servers.component";
 import { UserComponent } from "./users/user/user.component";
 import { UsersComponent } from "./users/users.component";
 import { RouterModule, Routes } from "@angular/router";
+import { AuthGuard } from "./auth-guard.service";
 
 const appRoutes: Routes = [
     //Here we indicate the path and the behaviour, i.e., go to the specified component
@@ -17,7 +18,8 @@ const appRoutes: Routes = [
         children: [{ path: ":id/:firstName/:lastName", component: UserComponent }],
     },
     {
-        path: "servers",
+        path: "servers", 
+        canActivate: [AuthGuard],
         component: ServersComponent,
         children: [
             { path: ":id", component: ServerComponent },
