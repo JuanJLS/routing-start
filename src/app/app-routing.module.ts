@@ -15,6 +15,7 @@ const appRoutes: Routes = [
     {
         path: "users",
         component: UsersComponent,
+        // The column just tell Angular it is a dynamic part
         children: [{ path: ":id/:firstName/:lastName", component: UserComponent }],
     },
     {

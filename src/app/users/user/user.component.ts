@@ -31,9 +31,6 @@ export class UserComponent implements OnInit, OnDestroy {
       (this.user.id = params["id"]),
       (this.user.firstName = params["firstName"])
     });
-    console.log(this.route.snapshot.params["id"]);
-    console.log(this.route.snapshot.params["firstName"]);
-    console.log(this.user.lastName);
   }
   ngOnDestroy() {
     this.paramsSubscription.unsubscribe();
