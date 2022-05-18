@@ -13,10 +13,16 @@ export class HomeComponent implements OnInit {
   ngOnInit() {}
 
   onLoadServer(id: number) {
-    this.router.navigate(["/servers", id, "edit"], {
-      queryParams: { allowEdit: 1 },
-      fragment: "loading",
-    });
+    if(this.authService.loggedIn) {
+      this.router.navigate(["/servers", id, "edit"], {
+        queryParams: { allowEdit: 1 },
+        fragment: "loading",
+      });
+      console.log("LoggedIn: " + this.authService.loggedIn);
+    }else {
+      alert("Please, log in to access to the Server!")
+      console.log("LoggedIn: " + this.authService.loggedIn);
+    }
   }
 
   onLogin() {
