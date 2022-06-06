@@ -8,6 +8,8 @@ import { UserComponent } from "./users/user/user.component";
 import { UsersComponent } from "./users/users.component";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "./auth-guard.service";
+import { canDeactivateGuard } from "./servers/edit-server/can-deactivate-guard.service";
+import { ServerResolver } from "./servers/server/server-resolver.service";
 
 const appRoutes: Routes = [
     //Here we indicate the path and the behaviour, i.e., go to the specified component
@@ -15,7 +17,7 @@ const appRoutes: Routes = [
     {
         path: "users",
         component: UsersComponent,
-        // The column just tell Angular it is a dynamic part
+        // The column just tells Angular that it is a dynamic part
         children: [{ path: ":id/:firstName/:lastName", component: UserComponent }],
     },
     {
@@ -25,8 +27,8 @@ const appRoutes: Routes = [
         canActivateChild: [AuthGuard],
         component: ServersComponent,
         children: [
-            { path: ":id", component: ServerComponent },
-            { path: ":id/edit", component: EditServerComponent },
+            { path: ":id", component: ServerComponent, resolve: {server: ServerResolver} },
+            { path: ":id/edit", component: EditServerComponent, canDeactivate: [canDeactivateGuard] },
         ],
     },
     { path: "not-found", component: PageNotFoundComponent },

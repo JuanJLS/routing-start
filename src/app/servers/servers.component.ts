@@ -22,9 +22,8 @@ export class ServersComponent implements OnInit {
 
   onReload() {
     //with relativeTo, we have to use a absolute route (/)
-    this.router.navigate(['/servers'], { relativeTo: this.route });
-    //without it, the slash/stroke is not needed: 
+    this.router.navigate(["/servers"], { relativeTo: this.route });
+    //without it, the slash/stroke is not needed:
     //this.router.navigate(['servers']);
-
   }
 }

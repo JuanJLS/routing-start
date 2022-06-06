@@ -1,7 +1,6 @@
-import { i18nMetaToJSDoc } from "@angular/compiler/src/render3/view/i18n/meta";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, Params } from "@angular/router";
-import { Subscription } from "rxjs/Subscription";
+import { Subscription } from "rxjs";
 import { UsersService } from "../users.service";
 
 @Component({

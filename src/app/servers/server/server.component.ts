@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Params, Router } from "@angular/router";
+import { ActivatedRoute, Data, Params, Router } from "@angular/router";
 
 import { ServersService } from "../servers.service";
 
@@ -18,16 +18,23 @@ export class ServerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    //the + is to convert from a String to a number (all what we received from the URL is a String)
-    const id = +this.route.snapshot.params["id"];
-    this.server = this.serversService.getServer(id);
-    //To have any change done in the Component:
-    this.route.params.subscribe((params: Params) => {
-      this.server = this.serversService.getServer(+params["id"]);
+    this.route.data.subscribe((data: Data) => {
+      //The name in the data, has to match the name we've set in the path (resolve)
+      this.server = data["server"];
     });
+    // //the + is to convert from a String to a number (all what we received from the URL is a String)
+    // const id = +this.route.snapshot.params["id"];
+    // this.server = this.serversService.getServer(id);
+    // //To have any change done in the Component:
+    // this.route.params.subscribe((params: Params) => {
+    //   this.server = this.serversService.getServer(+params["id"]);
+    // });
   }
   onEdit() {
     //To save the parameters, we add the second part
-    this.router.navigate(["edit"], { relativeTo: this.route, queryParamsHandling: 'preserve' });
+    this.router.navigate(["edit"], {
+      relativeTo: this.route,
+      queryParamsHandling: "preserve",
+    });
   }
 }

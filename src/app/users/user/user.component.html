@@ -1,3 +1,8 @@
 <p>User with ID {{ user.id }} loaded.</p>
-<p>User name is: {{user.firstName}} and last name is: {{ user.lastName}}</p>
+<p>User name is: {{ user.firstName }} and last name is: {{ user.lastName }}</p>
 <a [routerLink]="['/users', 10, 'Anna', 'Margarita']">Load Anna (10)</a>
+<div class="alert alert-primary" role="alert">
+  A simple primary alert with
+  <a href="#" class="alert-link">an example link</a>. Give it a click if you
+  like.
+</div>
